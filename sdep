@@ -1,0 +1,20 @@
+struct Shake: AnimatableModifier {
+    var times: CGFloat
+    let amplitude: CGFloat = 10
+    var animatableData: CGFloat {
+        get { times }
+        set { times = newValue }
+    }
+    func body(content: Content) -> some View {
+        return content.offset(x: sin(times * .pi * 2) * amplitude)
+    }
+}
+
+struct GeometryEffectUsageView: View {
+    @State var likes : Double = 0
+    @State private var text = ""
+    var body: some View {
+        VStack {
+            Button {
+                withAnimation(.default) {
+                    likes += 1
